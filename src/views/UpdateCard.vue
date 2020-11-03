@@ -65,7 +65,7 @@ export default {
       this.updateCard({
         id: this.card.id,
         title: this.card.title,
-        score: this.card.score,
+        score: parseInt(this.card.score),
         tasks: this.card.tasks,
       });
     },
