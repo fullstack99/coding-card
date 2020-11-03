@@ -1,0 +1,1 @@
+export const cards = state => state.cards;

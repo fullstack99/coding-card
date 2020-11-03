@@ -54,7 +54,7 @@ export default {
       background-color: green;
     }
     &--good {
-      background-color: blue;
+      background-color: #007bff;
     }
     &--normal {
       background-color: red;
