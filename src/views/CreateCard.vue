@@ -15,16 +15,22 @@
         v-model="formData.score"
         class="card-form__input"
       />
-      <Inputs :fields="tasks" @handleTaskData="addTaskData" />
-      <button class="card-form__button">
-        Create Card
-      </button>
+      <Inputs :fields="formData.tasks" @handleTaskData="addTaskData" />
+      <div>
+        <button type="button" class="card-form__button" @click="$router.go(-1)">
+          Back
+        </button>
+        <button type="submit" class="card-form__button">
+          Create Card
+        </button>
+      </div>
     </form>
   </div>
 </template>
 <script>
 import { mapActions } from 'vuex';
 import Inputs from '@/components/Inputs';
+
 export default {
   name: 'CreateCard',
   components: {
@@ -37,7 +43,6 @@ export default {
         score: 0,
         tasks: [],
       },
-      tasks: [],
     };
   },
   methods: {
@@ -78,6 +83,7 @@ export default {
     background-color: #007bff;
     color: #ffffff;
     text-transform: uppercase;
+    margin-top: 30px;
   }
 }
 </style>

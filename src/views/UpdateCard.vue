@@ -1,7 +1,12 @@
 <template>
   <div>
     <form v-on:submit.prevent="handleUpdateCard" class="card-form">
-      <input type="text" v-model="card.title" class="card-form__input" />
+      <input
+        type="text"
+        placeholder="Card Name"
+        v-model="card.title"
+        class="card-form__input"
+      />
       <input
         type="number"
         min="0"
@@ -9,6 +14,10 @@
         v-model="card.score"
         class="card-form__input"
       />
+      <Inputs :fields="card.tasks" @handleTaskData="updateTaskData" />
+      <button type="button" class="card-form__button" @click="$router.go(-1)">
+        Back
+      </button>
       <button class="card-form__button">
         Update Card
       </button>
@@ -17,14 +26,19 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import Inputs from '@/components/Inputs';
 
 export default {
   name: 'UpdateCard',
+  components: {
+    Inputs,
+  },
   data() {
     return {
       card: {
         title: '',
         score: 0,
+        tasks: [],
       },
     };
   },
@@ -43,11 +57,16 @@ export default {
   methods: {
     ...mapActions('cards', ['updateCard']),
 
+    updateTaskData(e) {
+      this.card.tasks = e.val;
+    },
+
     handleUpdateCard() {
       this.updateCard({
         id: this.card.id,
         title: this.card.title,
         score: this.card.score,
+        tasks: this.card.tasks,
       });
     },
   },
@@ -75,6 +94,7 @@ export default {
     border-color: transparent;
     color: #ffffff;
     text-transform: uppercase;
+    margin-top: 30px;
   }
 }
 </style>

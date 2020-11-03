@@ -9,11 +9,10 @@
           v-model="field.content"
           class="task__input"
         />
-        <div>
+        <div class="task__button-groups">
           <button
             type="button"
             @click="deleteField(index)"
-            v-if="tasks.length > 1"
             class="task__button task__button--remove"
           >
             -
@@ -21,7 +20,7 @@
           <button
             type="button"
             @click="addField(index)"
-            v-if="tasks.length - 1 === index"
+            v-show="tasks.length - 1 === index"
             class="task__button task__button--add"
           >
             +
@@ -64,7 +63,9 @@ export default {
   },
   created() {
     this.tasks =
-      this.fields.length > 0 ? this.fields : [{ content: '', id: this.index }];
+      this.fields.length > 0
+        ? [...this.fields]
+        : [{ content: '', id: this.index }];
   },
 };
 </script>
@@ -75,11 +76,15 @@ export default {
   .task {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
     &__input {
-      width: 80%;
+      width: 70%;
       max-width: 250px;
       height: 40px;
+    }
+    &__button-groups {
+      width: 30%;
     }
     &__button {
       width: 30px;
@@ -87,9 +92,9 @@ export default {
       border-radius: 50%;
       border-color: transparent;
       color: #ffffff;
-      margin-left: 10px;
       &--add {
         background-color: #007bff;
+        margin-left: 10px;
       }
       &--remove {
         background-color: #dc3545;
