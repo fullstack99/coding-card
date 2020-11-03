@@ -9,11 +9,11 @@
           v-model="field.content"
           class="task__input"
         />
-        <div class="task__button-groups">
+        <div class="task-actions">
           <button
             type="button"
             @click="deleteField(index)"
-            class="task__button task__button--remove"
+            class="task-actions__button task-actions__button--danger"
           >
             -
           </button>
@@ -21,7 +21,7 @@
             type="button"
             @click="addField(index)"
             v-show="tasks.length - 1 === index"
-            class="task__button task__button--add"
+            class="task-actions__button task-actions__button--primary"
           >
             +
           </button>
@@ -77,27 +77,32 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin: 5px auto;
     &__input {
       width: 70%;
       max-width: 250px;
       height: 40px;
+      border-radius: 5px;
+      border: 1px solid #3d3d3d;
+      padding-left: 10px;
     }
-    &__button-groups {
+    &-actions {
       width: 30%;
-    }
-    &__button {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border-color: transparent;
-      color: #ffffff;
-      &--add {
-        background-color: #007bff;
-        margin-left: 10px;
-      }
-      &--remove {
-        background-color: #dc3545;
+      &__button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border-color: transparent;
+        color: #ffffff;
+        &--primary {
+          background-color: #007bff;
+          margin-left: 10px;
+        }
+        &--danger {
+          background-color: #dc3545;
+        }
       }
     }
   }

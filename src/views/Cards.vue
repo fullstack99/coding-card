@@ -1,32 +1,32 @@
 <template>
   <div>
-    <button class="btn-create-card" @click="createCard">create</button>
+    <button class="action-button" @click="createCard">create</button>
     <div class="card-list">
       <div v-for="card in cards" :key="card.id" class="card">
-        <div class="card__actions">
+        <div class="card-actions">
           <button
-            class="card__button card__button--update"
+            class="card-actions__button card-actions__button--primary"
             @click="handleUpdate(card)"
           >
             Update
           </button>
           <button
-            class="card__button card__button--delete"
+            class="card-actions__button card-actions__button--danger"
             @click="handleDelete(card.id)"
           >
             Delete
           </button>
         </div>
-        <div class="card__header">
-          <p class="card__title">{{ card.title }}</p>
+        <div class="card-header">
+          <p class="card-header__title">{{ card.title }}</p>
           <span
-            class="card__badge"
+            class="card-header__badge"
             :class="
               card.score > 60
-                ? 'card__badge--excellent'
+                ? 'card-header__badge--excellent'
                 : card.score > 30
-                ? 'card__badge--good'
-                : 'card__badge--normal'
+                ? 'card-header__badge--good'
+                : 'card-header__badge--normal'
             "
           >
             {{ card.score }}
@@ -83,7 +83,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style lang="scss" scoped>
-.btn-create-card {
+.action-button {
   width: 100%;
   max-width: 150px;
   height: 50px;
@@ -91,6 +91,7 @@ export default {
   background-color: #007bff;
   color: #ffffff;
   border-color: transparent;
+  text-transform: uppercase;
 }
 .card-list {
   display: flex;
@@ -104,56 +105,57 @@ export default {
     padding: 30px;
     max-width: 200px;
     width: 100%;
-    &__actions {
+    &-actions {
       display: flex;
       justify-content: space-between;
       align-items: center;
       text-transform: uppercase;
+      &__button {
+        padding: 5px 10px;
+        color: #ffffff;
+        font-size: 12px;
+        border-color: transparent;
+        border-radius: 5px;
+        text-transform: uppercase;
+        &--primary {
+          background-color: #007bff;
+        }
+        &--danger {
+          background-color: red;
+        }
+      }
     }
-    &__header {
+    &-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-    &__title {
-      font-size: 14px;
-      font-weight: bold;
-      white-space: nowrap;
-      max-width: 150px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    &__badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px;
-      height: 30px;
-      color: #ffffff;
-      font-size: 12px;
-      &--excellent {
-        background-color: green;
-        border-radius: 15px;
+      &__title {
+        font-size: 14px;
+        font-weight: bold;
+        white-space: nowrap;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
-      &--good {
-        background-color: #007bff;
-        border-radius: 10px;
-      }
-      &--normal {
-        background-color: red;
-      }
-    }
-    &__button {
-      padding: 5px 10px;
-      color: #ffffff;
-      font-size: 12px;
-      border-color: transparent;
-      border-radius: 5px;
-      &--update {
-        background-color: #007bff;
-      }
-      &--delete {
-        background-color: red;
+      &__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        color: #ffffff;
+        font-size: 12px;
+        &--excellent {
+          background-color: green;
+          border-radius: 15px;
+        }
+        &--good {
+          background-color: #007bff;
+          border-radius: 10px;
+        }
+        &--normal {
+          background-color: red;
+        }
       }
     }
   }

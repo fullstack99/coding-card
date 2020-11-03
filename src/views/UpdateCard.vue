@@ -84,6 +84,8 @@ export default {
     height: 40px;
     margin: 10px;
     border-radius: 5px;
+    border: 1px solid #3d3d3d;
+    padding-left: 10px;
   }
   &__button {
     width: 100%;

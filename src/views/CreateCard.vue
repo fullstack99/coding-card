@@ -16,14 +16,12 @@
         class="card-form__input"
       />
       <Inputs :fields="formData.tasks" @handleTaskData="addTaskData" />
-      <div>
-        <button type="button" class="card-form__button" @click="$router.go(-1)">
-          Back
-        </button>
-        <button type="submit" class="card-form__button">
-          Create Card
-        </button>
-      </div>
+      <button type="button" class="card-form__button" @click="$router.go(-1)">
+        Back
+      </button>
+      <button type="submit" class="card-form__button">
+        Create Card
+      </button>
     </form>
   </div>
 </template>
@@ -73,6 +71,8 @@ export default {
     height: 40px;
     margin: 10px;
     border-radius: 5px;
+    border: 1px solid #3d3d3d;
+    padding-left: 10px;
   }
   &__button {
     width: 100%;
