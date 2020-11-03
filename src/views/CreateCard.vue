@@ -1,14 +1,21 @@
 <template>
   <div>
     <form v-on:submit.prevent="handleCreateCard" class="card-form">
-      <input type="text" v-model="card" class="card-form__input" />
+      <input
+        type="text"
+        placeholder="Card Name"
+        v-model="formData.card"
+        class="card-form__input"
+        required
+      />
       <input
         type="number"
         min="0"
         max="100"
-        v-model="score"
+        v-model="formData.score"
         class="card-form__input"
       />
+      <Inputs :fields="tasks" @handleTaskData="addTaskData" />
       <button class="card-form__button">
         Create Card
       </button>
@@ -17,13 +24,20 @@
 </template>
 <script>
 import { mapActions } from 'vuex';
-
+import Inputs from '@/components/Inputs';
 export default {
   name: 'CreateCard',
+  components: {
+    Inputs,
+  },
   data() {
     return {
-      card: '',
-      score: 0,
+      formData: {
+        card: '',
+        score: 0,
+        tasks: [],
+      },
+      tasks: [],
     };
   },
   methods: {
@@ -31,9 +45,13 @@ export default {
 
     handleCreateCard() {
       this.createCard({
-        title: this.card,
-        score: parseInt(this.score),
+        title: this.formData.card,
+        score: parseInt(this.formData.score),
+        tasks: this.formData.tasks,
       });
+    },
+    addTaskData(e) {
+      this.formData.tasks = e.val;
     },
   },
 };
